@@ -82,11 +82,20 @@ class PostgresPersistence(BasePersistence):
         except Exception as e:
             logger.error(f"Error updating user_data: {e}")
 
-    # Métodos no utilizados pero requeridos
+    # Métodos requeridos por BasePersistence en v20+
     async def get_chat_data(self): return defaultdict(dict)
     async def update_chat_data(self, chat_id, data): pass
+    async def refresh_chat_data(self, chat_id, chat_data): pass
+    async def drop_chat_data(self, chat_id): pass
+
     async def get_bot_data(self): return {}
     async def update_bot_data(self, data): pass
+    async def refresh_bot_data(self, bot_data): pass
+
+    async def refresh_user_data(self, user_id, user_data): pass
+    async def drop_user_data(self, user_id): pass
+
     async def get_callback_data(self): return None
     async def update_callback_data(self, data): pass
+
     async def flush(self): pass
